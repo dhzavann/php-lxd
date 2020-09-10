@@ -17,6 +17,7 @@ use Http\Discovery\MessageFactoryDiscovery;
 use Http\Discovery\UriFactoryDiscovery;
 use Http\Message\MessageFactory;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Client\ClientInterface;
 use \Http\Message\StreamFactory;
 
 class Client
@@ -34,7 +35,7 @@ class Client
     /**
      * The object that sends HTTP messages
      *
-     * @var HttpClient
+     * @var ClientInterface
      */
     private $httpClient;
 
@@ -73,7 +74,7 @@ class Client
      * Create a new lxd client Instance
      */
     public function __construct(
-        HttpClient $httpClient = null,
+        ClientInterface $httpClient = null,
         $apiVersion = null,
         $url = null,
         string $projectName = "default"
@@ -168,7 +169,7 @@ class Client
     /**
      * @param HttpClient $httpClient
      */
-    public function setHttpClient(HttpClient $httpClient)
+    public function setHttpClient(ClientInterface $httpClient)
     {
         $this->httpClientModified = true;
         $this->httpClient = $httpClient;
